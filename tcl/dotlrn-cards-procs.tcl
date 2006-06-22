@@ -176,17 +176,6 @@ namespace eval dotlrn_cards {
         ns_set put $args package_id 0
         set type [dotlrn::get_type_from_portal_id -portal_id $portal_id]
 
-        #select type from dotlrn_portal_types_map;
-        #         type          
-        #-----------------------
-        # user
-        # dotlrn_community
-        # dotlrn_class_instance
-        # dotlrn_club
-        #(4 rows)
-        
-        ns_log Notice [format "Class 1 TYPE=%s" $type]
-
         if {[string equal $type "dotlrn_class_instance"] == 1} {
             add_portlet_helper $portal_id $args
         }  else {
@@ -231,7 +220,6 @@ namespace eval dotlrn_cards {
     } {
         Clone this applet's content from the old community to the new one
     } {
-        ns_log notice "Cloning: [applet_key]"
         set new_package_id [add_applet_to_community $new_community_id]
         set old_package_id [dotlrn_community::get_applet_package_id \
             -community_id $old_community_id \
